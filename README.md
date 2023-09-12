@@ -1,2 +1,2 @@
-# companion-module-generic-http
+# companion-module-smartthings
 See HELP.md and LICENSE
