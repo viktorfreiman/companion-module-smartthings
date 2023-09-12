@@ -32,12 +32,12 @@
 		"apiVersion": "0.0.0",
 		"entrypoint": "../index.js"
 	},
-	"manufacturer": "Generic",
+	"manufacturer": "Samsung",
 	"products": [
-		"HTTP Requests"
+		"Smartthings"
 	],
 	"keywords": [
-		"Protocol",
-		"Generic"
+		"Samsung",
+		"Smartthings"
 	]
 }
