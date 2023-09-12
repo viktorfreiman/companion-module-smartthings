@@ -9,8 +9,15 @@ export const configFields = [
 	},
 	{
 		type: 'textinput',
-		id: 'prefix',
+		id: 'base-url',
 		label: 'Base URL',
+		width: 12,
+		default: 'https://api.smartthings.com/',
+	},
+	{
+		type: 'textinput',
+		id: 'pat',
+		label: 'PAT(Private Access Token)',
 		width: 12,
 		default: '',
 	},
