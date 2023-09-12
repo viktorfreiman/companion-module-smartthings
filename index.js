@@ -14,12 +14,16 @@ class GenericHttpInstance extends InstanceBase {
 
 		this.initActions()
 		this.initFeedbacks()
+		this.InitVariables()
 	}
+
 
 	init(config) {
 		this.config = config
 
 		this.updateStatus(InstanceStatus.Ok)
+
+
 
 		this.initActions()
 		this.initFeedbacks()
@@ -102,10 +106,60 @@ class GenericHttpInstance extends InstanceBase {
 		}
 	}
 
+
+	InitVariables() {
+		const url = this.config.endpoint + 'v1/devices'
+
+		this.setVariableValues({
+			'variable1': 'new value',
+			'variable2': 99,
+		})
+
+
+	}
+
 	initActions() {
 		const urlLabel = this.config.prefix ? 'URI' : 'URL'
 
+		const FIELDS_2 = {
+
+			Body: {
+				type: 'textinput',
+				label: 'Body, JSON format',
+				id: 'body',
+				default: '{"commands": [{"component": "main","capability": "switch","command": "on"}]}',
+				useVariables: true,
+			},
+		}
+
+		let variables = [
+			{ name: 'PAT', variableId: 'pat' },
+			{ name: 'File Contents', variableId: 'contents' },
+			{ name: 'Last Date/Time Read', variableId: 'datetime' },
+		]
+
+		this.setVariableDefinitions(variables);
+
+		let variableObj = {};
+
+		variableObj['pat'] = this.config.pat;
+		variableObj['contents'] = "the contents";
+		variableObj['datetime'] = "the date/time";
+
+		this.setVariableValues(variableObj);
+
 		this.setActionDefinitions({
+			// getDevices: {
+			// 	name: 'Command',
+			// 	description: 'Do action',
+			// 	options: [FIELDS_2.Body],
+			// 	callback: async (action, context) => {
+			// 		// post 
+			// 	},
+			// },
+
+
+
 			post: {
 				name: 'POST',
 				options: [FIELDS.Url(urlLabel), FIELDS.Body, FIELDS.Header, FIELDS.ContentType],
